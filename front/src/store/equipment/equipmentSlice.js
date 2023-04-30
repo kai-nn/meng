@@ -26,6 +26,7 @@ export const listenChannel = createAsyncThunk(
     (payload, {dispatch}) => {
         socket.on('connect', () => {
             dispatch(setStatusConnection('connect'))
+            // предзагрузки данных
             dataNeedsUpdate && dispatch(sendData({command: 'loadAll', selected: null}))
         })
         socket.on('connect_error', () => {
@@ -67,6 +68,10 @@ export const equipmentSlice = createSlice({
             const request = JSON.stringify({command: action.payload.command, selected: action.payload.selected})
             state.isLoading = false
             socket.emit('equipment', request)
+        },
+
+        updateData: (state, action) => {
+
         },
 
         setStatusConnection: (state, action) => {
@@ -144,6 +149,8 @@ export const equipmentSlice = createSlice({
             }
         },
 
+
+
         setSelected: (state, action) => {
             state.selected = action.payload
         },
@@ -170,6 +177,7 @@ export const {
     sendData,
     setStatusConnection,
     setIsLoading,
+    updateData,
 } = equipmentSlice.actions
 
 export default equipmentSlice.reducer

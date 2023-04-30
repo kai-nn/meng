@@ -42,15 +42,14 @@ const Submenu = () => {
 
     const selected = useSelector(state => state.equipment.selected)
     const isLoading = useSelector(state => state.equipment.isLoading)
-    const statusConnection = useSelector(state => state.equipment.statusConnection)
     const dispatch = useDispatch()
     const [buttonActivation, setButtonActivation] = useState(buttonState)
 
-    // инициация соединения и предзагрузки данных
+
+    // инициализация соединения
     useEffect(() => {
         dispatch(connect())
         dispatch(listenChannel())
-        // dispatch(sendData({command: 'loadAll', selected: null}))
         return () => dispatch(disconnect())
     }, [])
 
