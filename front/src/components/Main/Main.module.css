@@ -1,0 +1,13 @@
+.window{
+    position: fixed;
+    /*margin: 95px 0 40px 0;*/
+    top: 65px;
+    width: 100%;
+    height: calc(100vh - 65px - 42px); /* высота экрана устройства - верхнее меню - нижнее меню */
+}
+
+.content{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+

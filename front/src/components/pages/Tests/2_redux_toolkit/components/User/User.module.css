@@ -1,0 +1,13 @@
+.window input {
+  border: 1px solid lightgrey;
+  width: 150px;
+  height: 2em;
+}
+.window button {
+  border: 1px solid lightgrey;
+  width: 150px;
+  height: 2em;
+  background-color: green;
+}
+
+/*# sourceMappingURL=User.module.css.map */

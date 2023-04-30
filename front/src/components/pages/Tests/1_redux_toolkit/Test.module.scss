@@ -1,0 +1,31 @@
+label{
+  display: flex;
+  justify-content: center;
+  & input{
+    border: 1px solid lightgrey;
+  }
+
+  & button{
+    background-color: lightgrey;
+  }
+}
+ul{
+  list-style: none;
+}
+li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.delete{
+  color: red;
+  cursor: pointer;
+}
+
+input:checked + span{
+  text-decoration: line-through;
+}
+
+

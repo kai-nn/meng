@@ -1,0 +1,135 @@
+.curtain{
+  height: 100vh;
+  width: 100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 100;
+
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.open{
+    animation-duration: .5s;
+    animation-name: open;
+  }
+  @keyframes open {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  &.close{
+    opacity: 0;
+    animation-duration: .5s;
+    animation-name: close;
+  }
+  @keyframes close {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+}
+
+
+
+.modal{
+  position: fixed;
+  top: 120px;
+  padding: 15px 5px 20px 10px;
+  border-radius: 5px;
+  background-color: white;
+  height: 420px;
+
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.4));
+
+  &__header{
+    position: absolute;
+    top: -35px;
+    animation-duration: .2s;
+    animation-name: move_header;
+    z-index: 100;
+  }
+  @keyframes move_header {
+    from {
+      top: 0;
+    }
+    to {
+      top: -35px;
+    }
+  }
+
+  &__body{
+    height: inherit;
+    width: inherit;
+    padding: 5px;
+    z-index: 1000;
+    overflow-y: scroll;
+  }
+
+  &__footer{
+    //position: absolute;
+    bottom: -15px;
+    text-align: center;
+    animation-duration: .2s;
+    animation-name: move_footer;
+    z-index: 100;
+  }
+  @keyframes move_footer {
+    from {
+      bottom: 45px;
+    }
+    to {
+      bottom: -10px;
+    }
+  }
+}
+
+
+
+@media screen and (max-width: 440px) {
+  .modal {
+    top: 100px;
+    width: 100%;
+    height: 420px;
+    padding: 15px 5px 20px 5px;
+  }
+
+  .field {
+    display: block !important;
+
+    & > *{
+      width: 100%;
+      margin: 10px 0 0 0 !important;
+    }
+  }
+
+}
+
+
+/* Ползунки */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: white;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, lightgray, gray);
+    border-radius: 4px;
+    height: 30px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: darkgray;
+}
+

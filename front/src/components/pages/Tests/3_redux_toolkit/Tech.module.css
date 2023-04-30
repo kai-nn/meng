@@ -1,0 +1,13 @@
+.tech_list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.tech_list button {
+  width: 200px;
+  height: 40px;
+  background-color: cornflowerblue;
+}
+
+/*# sourceMappingURL=Tech.module.css.map */

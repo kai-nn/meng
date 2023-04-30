@@ -1,0 +1,25 @@
+.str{
+  display: flex;
+  justify-content: space-between;
+  height: 1.3em;
+
+}
+
+.str_sellected{
+  display: flex;
+  justify-content: space-between;
+  height: 1.3em;
+  color: orange;
+}
+
+.node{
+  cursor: pointer;
+}
+
+.name{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+

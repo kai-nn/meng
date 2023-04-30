@@ -1,0 +1,44 @@
+.data {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.data div {
+  width: 100%;
+  text-align: center;
+}
+.data div svg {
+  width: 60%;
+}
+
+.image {
+  width: 50%;
+}
+.image img {
+  width: 100%;
+  object-position: center top;
+}
+
+.input {
+  padding: 0 10px;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
+  width: 50%;
+}
+
+@media screen and (max-width: 600px) {
+  .data {
+    display: block;
+  }
+  .image {
+    width: 100%;
+  }
+  .input {
+    width: 100%;
+  }
+}
+h4 {
+  margin-top: 15px;
+}
+
+/*# sourceMappingURL=Data.module.css.map */
