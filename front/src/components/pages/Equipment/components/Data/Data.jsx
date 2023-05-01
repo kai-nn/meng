@@ -4,102 +4,118 @@ import TextField from "@mui/material/TextField";
 import {useDispatch, useSelector} from "react-redux";
 import {ReactComponent as NoData} from "./svg/noData.svg";
 import {ReactComponent as NoServerData} from "./svg/noServerData.svg";
+import {setEditableElement} from "../../../../../store/equipment/equipmentSlice";
 
 const Data = () => {
 
     const dispatch = useDispatch()
     const selected = useSelector(state => state.equipment.selected)
-    const data = useSelector(state => state.equipment.data)
+    const editableElement = useSelector(state => state.equipment.editableElement)
+    const [elemValue, setElemValue] = useState({
+        path: '',
+        name: '',
+        code: '',
+        description: '',
+        isErr: false,
+    })
 
-    const [image, setImage] = useState(<img src={''} alt={'Нет картинки'}/>)
-    const [name, setName] = useState('1')
-    const [code, setCode] = useState('2')
-    const [description, setDescription] = useState('3')
-    const [isErr, setIsErr] = useState(false)
+    const extraction = () => setElemValue({
+        path: selected.path ? selected.path : '',
+        name: selected.name ? selected.name : '',
+        code: selected.code ? selected.code : '',
+        description: selected.description ? selected.description : '',
+        isErr: false,
+    })
 
 
+    // инициализация
     useEffect(() => {
-        if(data){
-            const element = data.find(el => el?.id === selected)
-            const src = '/img_store/' + element.path
-            const alt = element.name
-
-            setImage(<img src={src} alt={alt}/>)
-            setName(!!element.name ? element.name : '')
-            setCode(!!element.code ? element.code : '')
-            setDescription(!!element.description ? element.description : '')
-            setIsErr(false)
-        }
+        selected?.name && extraction()
     }, [selected])
 
 
+    // редактирование
+    useEffect(() => {
+        editableElement === null && extraction()
+    }, [editableElement])
+
+
+    // контроллеры ввода
     const inputName = (event) => {
-        const text = event.target.value
-        text.length === 0 ? setIsErr(true) : setIsErr(false)
-        setName(text)
+        const value = event.target.value
+        value.length === 0
+            ? setElemValue({...elemValue, name: value, isErr: true})
+            : setElemValue({...elemValue, name: value, isErr: false})
+        dispatch(setEditableElement({...selected, ...elemValue, name: value}))
     }
 
+    const inputCode = (event) => {
+        dispatch(setEditableElement({...selected, ...elemValue, code: event.target.value}))
+        setElemValue({...elemValue, ...elemValue, code: event.target.value})
+    }
+
+    const inputDescription = (event) => {
+        dispatch(setEditableElement({...selected, ...elemValue, description: event.target.value}))
+        setElemValue({...elemValue, description: event.target.value})
+    }
 
     return (
         <>
-            {
-                selected === 1 && (
-                    <div className={style.data}>
-                        <div>
-                            <NoData/>
-                        </div>
-                    </div>
-                )
-            }
 
             {
-                data && (
+                selected.id !== 1 &&
                 <div className={style.data}>
 
                     <div className={style.image}>
-                        {image}
+                        <img src={/img_store/ + elemValue.path} alt={elemValue.name}/>
                     </div>
 
                     <div className={style.input}>
                         <h4>Характеристики</h4>
 
                         <TextField
-                            error={isErr}
+                            error={elemValue.isErr}
                             label="Наименование"
                             size="small"
-                            value={name}
+                            value={elemValue.name}
                             onChange={event => inputName(event)}
                         />
                         <TextField
                             label="Обозначение"
                             size="small"
-                            value={code}
-                            onChange={(event) => setCode(event.target.value)}
+                            value={elemValue.code}
+                            onChange={event => inputCode(event)}
                         />
                         <TextField
                             label="Описание"
                             size="small"
-                            value={description}
-                            onChange={(event) => setDescription(event.target.value)}
+                            value={elemValue.description}
+                            onChange={event => inputDescription(event)}
                         />
                     </div>
                 </div>
-                )
-
             }
-
-
 
 
             {
-                !data && (
-                    <div className={style.data}>
-                        <div>
-                            <NoServerData />
-                        </div>
+                selected.id === 1 &&
+                <div className={style.data}>
+                    <div>
+                        <NoData/>
                     </div>
-                )
+                </div>
             }
+
+
+            {/*{*/}
+            {/*    !selected &&*/}
+            {/*    <div className={style.data}>*/}
+            {/*        <div>*/}
+            {/*            <NoServerData />*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*}*/}
+
         </>
     )
 }

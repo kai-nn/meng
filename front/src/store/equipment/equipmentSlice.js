@@ -4,19 +4,22 @@ import {socket} from "../../general/socket";
 
 const initialState = {
     data: null,
-    selected: 1,
+    selected: {
+        id: 1,
+    },
+    editableElement: null,
     isLoading: false,
     statusConnection: null,
 }
 
 let dataNeedsUpdate = true
 
-const autoSelect = parrent => {
+const autoSelect = (state_date, parrent) => {
     let autoSelect = parrent.id
     autoSelect = autoSelect === 1 && parrent.nodes[0]
         ? parrent.nodes[0]
         : autoSelect
-    return autoSelect
+    return state_date.find(el => el?.id === autoSelect)
 }
 
 
@@ -75,9 +78,6 @@ export const equipmentSlice = createSlice({
         },
 
         setStatusConnection: (state, action) => {
-            // console.log('setStatusConnection', action.payload)
-            // console.log('state.isLoading', state.isLoading)
-            // console.log('dataNeedsUpdate', dataNeedsUpdate)
             state.statusConnection = action.payload
         },
 
@@ -98,7 +98,7 @@ export const equipmentSlice = createSlice({
                         nesting: null,
                     }
                 })
-                state.selected = autoSelect(state.data[0])
+                state.selected = autoSelect(state.data, state.data[0])
                 dataNeedsUpdate = false
                 return
             }
@@ -126,7 +126,7 @@ export const equipmentSlice = createSlice({
                     nesting: null,
                 }
                 state.data = tempData
-                state.selected = autoSelect(newElem)
+                state.selected = autoSelect(state.data, newElem)
             }
 
             if(command === 'delElem'){
@@ -144,15 +144,17 @@ export const equipmentSlice = createSlice({
 
                 // console.log('parrent ', parrent)
                 state.data = tempData
-                state.selected = autoSelect(parrent)
+                state.selected = autoSelect(state.data, parrent)
                 // state.isLoading = false
             }
         },
 
-
+        setEditableElement: (state, action) => {
+            state.editableElement = action.payload
+        },
 
         setSelected: (state, action) => {
-            state.selected = action.payload
+            state.selected = state.data.find(el => el?.id === action.payload)
         },
 
         collapsEl: (state, action) => {
@@ -178,6 +180,7 @@ export const {
     setStatusConnection,
     setIsLoading,
     updateData,
+    setEditableElement,
 } = equipmentSlice.actions
 
 export default equipmentSlice.reducer

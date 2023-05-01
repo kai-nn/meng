@@ -3,7 +3,7 @@ import style from './List.module.scss'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {useDispatch, useSelector} from "react-redux";
-import {setSelected, collapsEl} from "../../../../../store/equipment/equipmentSlice";
+import {setSelected, collapsEl, setEditableElement} from "../../../../../store/equipment/equipmentSlice";
 
 
 const List = () => {
@@ -37,11 +37,13 @@ const List = () => {
 
     const activate = (id) => {
         dispatch(setSelected(id))
+        dispatch(setEditableElement(null))
     }
 
 
     const collaps = (id) => {
         dispatch(collapsEl(id))
+        dispatch(setEditableElement(null))
     }
 
 
@@ -54,7 +56,7 @@ const List = () => {
                 createList(data[0]).filter(el => el.name != 'Root').map(el => {
                     const { id, name, type, collapsed, nesting, is_group } = el
                     const indent = nesting * 10 + 'px'
-                    const sell = id === selected
+                    const sell = id === selected.id
                         ? style.str_sellected
                         : style.str
                     return (
