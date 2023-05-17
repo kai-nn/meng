@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import style from './Submenu.module.scss';
 import {Divider} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -12,14 +12,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     connect,
     disconnect,
+    press,
+    setStatusConnection,
     listenChannel,
-    sendData,
-    setEditableElement,
-} from "../../store/equipment/equipmentSlice";
+    sendData, setFilterValue,
+} from "../../../../../store/equipment/equipmentSlice";
+import {current} from "@reduxjs/toolkit";
+import FilterInput from "./FilterInput";
 
 
 const Submenu = () => {
-
 
     const buttonState = {
         // true - кнопка включена, false - кнопа выключена
@@ -33,7 +35,6 @@ const Submenu = () => {
             Object
                 .keys(this)
                 .filter(el => el !== 'allDisable' && el !== 'allActivate')
-                // .filter(el => el !== 'allDisable' && el !== 'allActivate' && el !== 'done' && el !== 'cancel')
                 .forEach(key => this[key] = false)
         },
         allActivate: function(){
@@ -46,44 +47,44 @@ const Submenu = () => {
 
     const dispatch = useDispatch()
     const selected = useSelector(state => state.equipment.selected)
-    const isLoading = useSelector(state => state.equipment.isLoading)
     const editableElement = useSelector(state => state.equipment.editableElement)
-    const [buttonActivation, setButtonActivation] = useState(buttonState)
+    const isLoading = useSelector(state => state.equipment.isLoading)
 
+    const [buttonActivation, setButtonActivation] = useState(buttonState)
 
     // инициализация соединения
     useEffect(() => {
         dispatch(connect())
         dispatch(listenChannel())
-        return () => dispatch(disconnect())
+        return () => {
+            dispatch(setStatusConnection(null))
+            dispatch(disconnect())
+        }
     }, [])
 
 
-    // логика влючения/выключения кнопок
+    // логика включения/выключения кнопок
     useEffect(() => {
-        if (isLoading) {
-            if (selected.id === 1){
+        if(isLoading) {
+            if (selected.id === 1) {
                 // данные отсутствуют
                 buttonState.allDisable()
                 buttonState.addSubElem = true
             } else if (selected.id > 1) {
                 // данные имеются
                 buttonState.allActivate()
-                // console.log('editableElement', !!editableElement, !editableElement)
-                if(!!editableElement){
-                    // идет редактирование полей
-                    buttonState.done = true
-                    buttonState.cancel = true
-                } else if(!editableElement) {
-                    // редактирование прекращено
-                    buttonState.done = false
-                    buttonState.cancel = false
-                }
             }
-
-        } else {
-            buttonState.allDisable()
         }
+        if(!!editableElement){
+            // идет редактирование полей
+            buttonState.done = true
+            buttonState.cancel = true
+        } else if(!editableElement){
+            // редактирование прекращено
+            buttonState.done = false
+            buttonState.cancel = false
+        }
+
         setButtonActivation(buttonState)
 
     }, [isLoading, selected, editableElement])
@@ -92,17 +93,14 @@ const Submenu = () => {
     // контроллеры нажатия кнопок
     const addElem = () => {
         dispatch(sendData({command: 'addElem', selected: selected.id}))
-        dispatch(setEditableElement(null))
     }
 
     const addSubElem = () => {
         dispatch(sendData({command: 'addSubElem', selected: selected.id}))
-        dispatch(setEditableElement(null))
     }
 
     const delElem = () => {
         dispatch(sendData({command: 'delElem', selected: selected.id}))
-        dispatch(setEditableElement(null))
     }
 
     const cancel = () => {
@@ -111,7 +109,7 @@ const Submenu = () => {
         buttonState.cancel = false
         setButtonActivation(buttonState)
 
-        dispatch(setEditableElement(null))
+        dispatch(press('cancel'))
     }
 
     const done = () => {
@@ -120,6 +118,7 @@ const Submenu = () => {
         buttonState.cancel = false
         setButtonActivation(buttonState)
 
+        dispatch(press('done'))
     }
 
 
@@ -146,21 +145,17 @@ const Submenu = () => {
                     <Filter />
                 </IconButton>
                 {/*<FilterAltOutlinedIcon style={{margin: '0 5px'}} fontSize="small" disabled={disabled}/>*/}
-
-                <input className={style.input}
-                       placeholder={'Фильтр'}
-                       disabled={!buttonActivation.filter && false}
-                />
+                <FilterInput filterBtn={buttonActivation.filter}/>
 
             </div>
 
             <div className={style.group_3}>
                 {/*<Divider orientation="vertical" flexItem />*/}
 
-                <IconButton onClick={done} disabled={!buttonActivation.done}>
+                <IconButton name={'done'} onClick={done} disabled={!buttonActivation.done}>
                     <CheckOutlinedIcon style={{margin: '0'}} fontSize="small"/>
                 </IconButton>
-                <IconButton onClick={cancel} disabled={!buttonActivation.cancel}>
+                <IconButton name={'cancel'} onClick={cancel} disabled={!buttonActivation.cancel}>
                     <ClearOutlinedIcon style={{margin: '0'}} fontSize="small"/>
                 </IconButton>
             </div>

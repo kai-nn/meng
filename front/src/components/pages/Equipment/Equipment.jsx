@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import style from './Equipment.module.scss'
 import List from "./components/List/List";
 import Data from "./components/Data/Data";
-import Submenu from "../../Submenu/Submenu";
+import Submenu from "./components/Submenu/Submenu";
 import {useDispatch, useSelector} from "react-redux";
 import {showMessage} from "../../../store/message/messageSlice";
 
@@ -19,7 +19,6 @@ const Equipment = () => {
 
 
     useEffect(() => {
-        // type color = 'success' | 'info' | 'warning' | 'error';
         let msg
         switch (statusConnection){
             case 'connect':

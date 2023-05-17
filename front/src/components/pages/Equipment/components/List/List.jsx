@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import style from './List.module.scss'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {useDispatch, useSelector} from "react-redux";
-import {setSelected, collapsEl, setEditableElement} from "../../../../../store/equipment/equipmentSlice";
+import {setSelected, collapsEl} from "../../../../../store/equipment/equipmentSlice";
 
 
 const List = () => {
@@ -11,6 +11,7 @@ const List = () => {
     const dispatch = useDispatch()
     const selected = useSelector(state => state.equipment.selected)
     const data = useSelector(state => state.equipment.data)
+    const filterValue = useSelector(state => state.equipment.filterValue)
 
 
     function createList(object) {
@@ -20,10 +21,17 @@ const List = () => {
             nesting++
             object.nodes.map(n => {
                 const elem = data.find(el => el?.id === n)
-                // console.log('elem', elem)
-                if (!elem) return
+
+                // фильтрация элементов. Родитель не должен быть "схлопнут"
+                const isIntersection = filterValue
+                    .map(e => elem.name.includes(e))
+                    .reduce((sum, item) => sum && item, true)
+                if (!isIntersection) return
+
                 const tempDataElem = { ...elem }
                 res.push({...tempDataElem, nesting: nesting}  )
+
+                // если родитель "схлопнут", то потомки не рендерятся
                 if (elem.collapsed) return
 
                 chainReaction(tempDataElem)
@@ -37,13 +45,11 @@ const List = () => {
 
     const activate = (id) => {
         dispatch(setSelected(id))
-        dispatch(setEditableElement(null))
     }
 
 
     const collaps = (id) => {
         dispatch(collapsEl(id))
-        dispatch(setEditableElement(null))
     }
 
 
@@ -52,7 +58,6 @@ const List = () => {
         <>
             {
                 data &&
-                data.length &&
                 createList(data[0]).filter(el => el.name != 'Root').map(el => {
                     const { id, name, type, collapsed, nesting, is_group } = el
                     const indent = nesting * 10 + 'px'
@@ -60,12 +65,12 @@ const List = () => {
                         ? style.str_sellected
                         : style.str
                     return (
-                        <div key={id}
+                        <div key={`list_${id}`}
                              className={sell}
                              style={{marginLeft: indent}}
                              onClick={() => activate(id)}
                         >
-                            <span className={style.name}>{id} {name}</span>
+                            <span className={style.name}>{name}</span>
                             {
                                 is_group && (
                                     collapsed

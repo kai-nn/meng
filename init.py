@@ -185,7 +185,7 @@ equipment_bd = [
         'data_added': None,
 
         'nodes': [2, 4, 8],
-        'parrent': None,
+        'parent': None,
 
         'options': None,
 
@@ -204,7 +204,7 @@ equipment_bd = [
         'data_added': None,
 
         'nodes': [3],
-        'parrent': 1,
+        'parent': 1,
 
         'options': None,
 
@@ -219,11 +219,11 @@ equipment_bd = [
         'description': 'Токарное приспособление (планшайба)',
         'code': '63030-100',
         'firm': 'цех 50',
-        'path': 'equipment/prisp_1.png',
+        'path': 'equipment/Планшайба.jpg',
         'data_added': '20.09.2022',
 
         'nodes': [],
-        'parrent': 2,
+        'parent': 2,
 
         'options': {'detail': '11.4201.3080.00'},
 
@@ -242,7 +242,7 @@ equipment_bd = [
         'data_added': '20.09.2022',
 
         'nodes': [5, 6],
-        'parrent': 1,
+        'parent': 1,
 
         'options': None,
 
@@ -257,11 +257,11 @@ equipment_bd = [
         'description': 'Оправка токарная',
         'code': '61510-500',
         'firm': 'Цех 50',
-        'path': 'equipment/tool_1.png',
+        'path': 'equipment/Резец.png',
         'data_added': '20.01.1990',
 
         'nodes': [],
-        'parrent': 4,
+        'parent': 4,
 
         'options': {'len': 200, 'b*h': '30*30'},
 
@@ -276,11 +276,11 @@ equipment_bd = [
         'description': 'Инструмент для сверления отверстий',
         'code': None,
         'firm': None,
-        'path': 'equipment/tool_2.png',
+        'path': 'equipment/Сверла.jpg',
         'data_added': '20.01.1988',
 
         'nodes': [7],
-        'parrent': 4,
+        'parent': 4,
 
         'options': None,
 
@@ -295,11 +295,11 @@ equipment_bd = [
         'description': 'Сверло спиральное твердосплавное',
         'code': '61510-2000',
         'firm': 'Guring',
-        'path': 'equipment/tool_3.png',
+        'path': 'equipment/Сверло.webp',
         'data_added': '20.01.2021',
 
         'nodes': [],
-        'parrent': 6,
+        'parent': 6,
 
         'options': {'len': 150, 'diam': 32},
 
@@ -319,7 +319,7 @@ equipment_bd = [
         'data_added': '20.09.2022',
 
         'nodes': [],
-        'parrent': 1,
+        'parent': 1,
 
         'options': {'detail': '11.4201.3080.00'},
 
@@ -347,7 +347,7 @@ def filling_equipment_bd():
                 data_added=equipment_bd[index]['data_added'],
 
                 nodes=str(equipment_bd[index]['nodes']),
-                parrent=equipment_bd[index]['parrent'],
+                parent=equipment_bd[index]['parent'],
 
                 options=str(equipment_bd[index]['options']),
 

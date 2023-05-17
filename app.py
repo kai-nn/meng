@@ -234,7 +234,9 @@ def equipment(arg):
 
     command = request['command']
     selected = request['selected']
-    print(command, selected)
+    sender = request['sender']
+    token = request['token']
+    # print('token', token)
 
     if command == 'loadAll':
         eq = Equipment.query.all()
@@ -243,7 +245,7 @@ def equipment(arg):
             equipment += [{
                 'id': e.id,
                 'nodes': eval(e.nodes),
-                'parrent': e.parrent,
+                'parent': e.parent,
 
                 'type': e.type,
                 'name': e.name,
@@ -261,16 +263,25 @@ def equipment(arg):
             # response = json.dumps(equipment)
 
     if command == 'addElem':
-        equipment = add_equipment_element(selected)
+        equipment = add_equipment_element(selected, sender)
 
     if command == 'addSubElem':
-        equipment = add_equipment_sub_element(selected)
+        equipment = add_equipment_sub_element(selected, sender)
 
     if command == 'delElem':
         equipment = del_elem(selected)
 
+    if command == 'updateElem':
+        equipment = update_elem(selected)
+
+
+    # equipment['sender'] = sender
     # print(equipment)
-    response = json.dumps(equipment)
+    response = json.dumps({
+        'equipment': equipment,
+        'sender': sender,
+        'token': token
+    })
     socketIo.emit('equipment', response)
 
 
@@ -292,7 +303,7 @@ def equipment_http():
                 'data_added': e.data_added,
 
                 'nodes': eval(e.nodes),
-                'parrent': e.parrent,
+                'parent': e.parent,
 
                 'options': eval(e.options),
 
@@ -331,7 +342,26 @@ def equipment_http():
         return 'deleteElem OK'
 
 
-def create_new_equipment(parrent):
+def update_elem(value):
+    id = value['id']
+    elem = Equipment.query.get(id)
+
+    elem.name = value['name']
+    elem.code = value['code']
+    elem.description = value['description']
+    elem.path = value['path']
+
+    db.session.commit()
+    print(elem.name)
+
+    equipment_schema = EquipmentSchema()
+    return {
+        'elem': {**equipment_schema.dump(elem), 'nodes': eval(elem.nodes), 'options': eval(elem.options)},
+        'command': 'updateElem',
+    }
+
+
+def create_new_equipment(parent, sender):
     newElem = Equipment(
         type=None,
         name=None,
@@ -342,12 +372,12 @@ def create_new_equipment(parrent):
         data_added=datetime.now().date().strftime("%d.%m.%Y"),
 
         nodes=str([]),
-        parrent=parrent.id,
+        parent=parent.id,
 
         options=str(None),
 
         relevance=1,
-        added_id=None,
+        added_id=None if sender == None else sender,
     )
     db.session.add(newElem)
     db.session.commit()
@@ -357,48 +387,48 @@ def create_new_equipment(parrent):
     return newElem
 
 
-def add_equipment_element(sel):
+def add_equipment_element(sel, sender):
 
     selected = Equipment.query.get(sel)
-    parrent = Equipment.query.get(selected.parrent)
-    new = create_new_equipment(parrent)
+    parent = Equipment.query.get(selected.parent)
+    new = create_new_equipment(parent, sender)
 
-    parrent_nodes = eval(parrent.nodes)
-    # print('parrent_nodes: ', parrent_nodes)
-    position_in_list = parrent_nodes.index(sel)
-    parrent_nodes.insert(position_in_list + 1, new.id)
-    # print('new nodes list: ', parrent_nodes )
-    parrent.nodes = str(parrent_nodes)
+    parent_nodes = eval(parent.nodes)
+    # print('parent_nodes: ', parent_nodes)
+    position_in_list = parent_nodes.index(sel)
+    parent_nodes.insert(position_in_list + 1, new.id)
+    # print('new nodes list: ', parent_nodes )
+    parent.nodes = str(parent_nodes)
 
     db.session.commit()
 
     equipment_schema = EquipmentSchema()
     return {
-        'parrent': {**equipment_schema.dump(parrent), 'nodes': eval(parrent.nodes), 'options': eval(parrent.options)},
+        'parent': {**equipment_schema.dump(parent), 'nodes': eval(parent.nodes), 'options': eval(parent.options)},
         'newElem': {**equipment_schema.dump(new), 'nodes': eval(new.nodes), 'options': eval(new.options)},
         'command': 'addElem',
     }
 
 
-def add_equipment_sub_element(sel):
+def add_equipment_sub_element(sel, sender):
 
     selected = Equipment.query.get(sel)
-    # print('parrent', sel)
-    parrent = selected
-    new = create_new_equipment(parrent)
+    # print('parent', sel)
+    parent = selected
+    new = create_new_equipment(parent, sender)
 
-    parrent_nodes = eval(parrent.nodes)
-    # print('parrent_nodes: ', parrent_nodes)
-    parrent_nodes.append(new.id)
+    parent_nodes = eval(parent.nodes)
+    # print('parent_nodes: ', parent_nodes)
+    parent_nodes.append(new.id)
 
-    # print('new nodes list: ', parrent_nodes)
-    parrent.nodes = str(parrent_nodes)
+    # print('new nodes list: ', parent_nodes)
+    parent.nodes = str(parent_nodes)
     db.session.commit()
 
     equipment_schema = EquipmentSchema()
-    # print(equipment_schema.dump(parrent))
+    # print(equipment_schema.dump(parent))
     return {
-        'parrent': {**equipment_schema.dump(parrent), 'nodes': eval(parrent.nodes), 'options': eval(parrent.options)},
+        'parent': {**equipment_schema.dump(parent), 'nodes': eval(parent.nodes), 'options': eval(parent.options)},
         'newElem': {**equipment_schema.dump(new), 'nodes': eval(new.nodes), 'options': eval(new.options)},
         'command': 'addSubElem',
     }
@@ -416,10 +446,10 @@ def del_elem(selected):
     chain(eval(Equipment.query.get(selected).nodes))
 
     selected_elem = Equipment.query.get(selected)
-    parrent = Equipment.query.get(selected_elem.parrent)
-    temp_parrent_nodes = eval(parrent.nodes)
-    temp_parrent_nodes.remove(selected_elem.id)
-    parrent.nodes = str(temp_parrent_nodes)
+    parent = Equipment.query.get(selected_elem.parent)
+    temp_parent_nodes = eval(parent.nodes)
+    temp_parent_nodes.remove(selected_elem.id)
+    parent.nodes = str(temp_parent_nodes)
 
     # id_deleted_elem = del_elem(selected)
     eq = db.session.query(Equipment).filter(Equipment.id.in_(deleted_nodes))
@@ -429,7 +459,7 @@ def del_elem(selected):
 
     equipment_schema = EquipmentSchema()
     return {
-        'parrent': {**equipment_schema.dump(parrent), 'nodes': eval(parrent.nodes), 'options': eval(parrent.options)},
+        'parent': {**equipment_schema.dump(parent), 'nodes': eval(parent.nodes), 'options': eval(parent.options)},
         'deleted_nodes': deleted_nodes,
         'command': 'delElem',
     }

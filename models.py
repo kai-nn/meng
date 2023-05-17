@@ -177,7 +177,7 @@ class Oper(db.Model):
 
 class Equipment(db.Model):                                      # оснащение
     id = db.Column(db.Integer, primary_key=True)
-    parrent = db.Column(db.Integer)                             # ID родителя
+    parent = db.Column(db.Integer)                             # ID родителя
     nodes = db.Column(db.Text)                                  # ID потомков
 
     name = db.Column(db.String(100))                            # краткое наименование
