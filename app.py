@@ -15,7 +15,6 @@ from flask_socketio import SocketIO
 # pip install flask-socketio
 
 
-
 # работа с токенами
 # from flask_jwt_extended import \
 #     create_access_token, \
