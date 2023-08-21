@@ -28,14 +28,14 @@ app = Flask(__name__, static_folder="./front/build", static_url_path='/')
 app.app_context().push()
 # jwt = JWTManager(app)
 
-socketIo = SocketIO(app, cors_allowed_origins='*')
+socket = SocketIO(app, cors_allowed_origins='*')
 
 # настройки подключения к базе, токены
 from configuration import *
 
 
 # импорт моделей и схем базы
-from models import *
+# from models import *
 
 
 # настройки при первичном запуске
@@ -227,7 +227,7 @@ def img_store(name):
     return send_from_directory("static/images", name)
 
 
-@socketIo.event
+@socket.event
 def equipment(arg):
     request = json.loads(arg)
 
@@ -281,7 +281,7 @@ def equipment(arg):
         'sender': sender,
         'token': token
     })
-    socketIo.emit('equipment', response)
+    socket.emit('equipment', response)
 
 
 @app.route('/equipment_http', methods=['GET', 'POST', 'DELETE'])
@@ -321,12 +321,12 @@ def equipment_http():
 
         if command == 'addElem':
             response = add_equipment_element(selected)
-            socketIo.emit('equipmentСhange', response)
+            socket.emit('equipmentСhange', response)
             return 'addElem OK'
 
         if command == 'addSubElem':
             response = add_equipment_sub_element(selected)
-            socketIo.emit('equipmentСhange', response)
+            socket.emit('equipmentСhange', response)
             return 'addSubElem OK'
 
     if request.method == 'DELETE':
@@ -337,7 +337,7 @@ def equipment_http():
         response = del_elem(selected)
         # print(response)
 
-        socketIo.emit('equipmentСhange', response)
+        socket.emit('equipmentСhange', response)
         return 'deleteElem OK'
 
 
@@ -613,4 +613,4 @@ def wp():
 #     app.run()
 
 # if __name__ == '__main__':
-#     socketIo.run(app)
+#     socket.run(app)

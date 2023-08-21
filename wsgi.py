@@ -1,7 +1,8 @@
 # import eventlet
 # from eventlet import wsgi
-from app import app, socketIo
+# from app import app, socketIo
 # wsgi.server(eventlet.listen(('127.0.0.1', 8000), app))
+
 
 
 # from app import app
@@ -9,5 +10,7 @@ from app import app, socketIo
 #         app.run()
 
 
+
+from app import app, socket
 if __name__ == '__main__':
-    socketIo.run(app)
+    socket.run(app)
