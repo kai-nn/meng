@@ -612,5 +612,5 @@ def wp():
 # if __name__ == '__main__':
 #     app.run()
 
-if __name__ == '__main__':
-    socketIo.run(app)
+# if __name__ == '__main__':
+#     socketIo.run(app)
