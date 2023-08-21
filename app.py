@@ -35,7 +35,7 @@ from configuration import *
 
 
 # импорт моделей и схем базы
-# from models import *
+from models import *
 
 
 # настройки при первичном запуске
