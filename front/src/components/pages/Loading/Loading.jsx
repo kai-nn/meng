@@ -1,14 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react'
 import useAxios from "../../../general/useAxios";
-import style from '../TestJWT/TestJWT.module.scss'
+import style from '../Loading/Loading.module.scss'
 import Diagram from "./components/Diagram";
 import Workplaces from "./components/Workplaces";
 import ControlPanel from "./components/ControlPanel";
-import useWindowDimensions from '../TestJWT/components/useWindowDimensions'
+import useWindowDimensions from '../Loading/components/useWindowDimensions'
 import {Skeleton} from "@mui/material";
 
 
-const TestJWT = () => {
+const Loading = () => {
 
     const {data, err, loaded, changeData} = useAxios(
         'workplaces',
@@ -54,23 +54,9 @@ const TestJWT = () => {
     }, [loaded])
 
 
-    // const [indicatorPos, setIndicatorPos] = useState(null)
-    //
-    // const handleMouseOver = (event) => {
-    //     setIndicatorPos(event.clientX - event.target.getBoundingClientRect().left)
-    // }
-
-
-
     return (
         <>
-            {/*<div*/}
-            {/*    style={{position: 'relative', left: '100px', height: '50px', width: '500px', backgroundColor: 'red'}}*/}
-            {/*    onMouseMove={event => handleMouseOver(event)}*/}
-            {/*>*/}
-            {/*    {indicatorPos}*/}
-            {/*    {indicatorPos && <div style={{left: indicatorPos, height: '50%' , width: '1px', backgroundColor: 'black'}}></div>}*/}
-            {/*</div>*/}
+
             {
                 workplaces &&
                     <div className={style.frame}>
@@ -116,5 +102,5 @@ const TestJWT = () => {
     )
 }
 
-export default TestJWT
+export default Loading
 

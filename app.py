@@ -15,10 +15,6 @@ from flask_socketio import SocketIO
 # pip install flask-socketio
 
 
-# import eventlet
-# eventlet.monkey_patch()
-
-
 # работа с токенами
 # from flask_jwt_extended import \
 #     create_access_token, \
@@ -468,24 +464,6 @@ def del_elem(selected):
     }
 
 
-# sel = input('selected ID: ')
-
-
-
-# nodes = [{'id': 1, 'name': 'el 1'}, {'id': 2, 'name': 'el 2'},]
-# print({**nodes[0], 'id': 2})
-
-
-# @socketIo.on('equipmentСhange')
-# def equipmentСhange(change):
-#     print('change', change)
-#
-#     eq = Equipment.query.get(change)
-#     equipment_schema = EquipmentSchema()
-#     response = equipment_schema.dump(eq)
-#
-#     send(response, broadcast=True)
-#     return None
 
 
 @app.route('/workplaces', methods=['GET', 'POST'])
@@ -608,13 +586,3 @@ def wp():
 # wp()
 
 
-
-
-
-
-
-# if __name__ == '__main__':
-#     app.run()
-
-# if __name__ == '__main__':
-#     socket.run(app)

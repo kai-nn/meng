@@ -8,6 +8,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import BugReportIcon from '@mui/icons-material/BugReport';
 import ConstructionIcon from '@mui/icons-material/Construction';
+import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
 
 
 
@@ -43,9 +44,9 @@ export const linkExtensions = [
         icon: <ConstructionIcon />
     },
     {
-        label: 'Тесты',
-        url: 'test_jwt',
-        icon: <BugReportIcon />
+        label: 'Загрузка',
+        url: 'loading',
+        icon: <AlignHorizontalLeftIcon />
     },
 ]
 

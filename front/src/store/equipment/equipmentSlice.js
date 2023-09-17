@@ -26,7 +26,8 @@ export const listenChannel = createAsyncThunk(
             // предзагрузка данных
             dataNeedsUpdate && dispatch(sendData({command: 'loadAll', selected: null, user: user}))
         })
-        socket.on('connect_error', () => {
+        socket.on('connect_error', (err) => {
+            console.log('connect_error', err.message)
             dataNeedsUpdate = true
             dispatch(setIsLoading(false))
             dispatch(setStatusConnection('connect_error'))
@@ -72,7 +73,7 @@ export const updateData = createAsyncThunk(
             sender: state.access.user?.id ? state.access.user?.id : null,
             token: state.access.token ? state.access.token : null
         })
-        dispatch(setIsLoading(false))
+        console.log('updateData')
         socket.emit('equipment', request)
 })
 

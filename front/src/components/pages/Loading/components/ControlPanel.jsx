@@ -1,5 +1,5 @@
 import React from 'react'
-import style from "../TestJWT.module.scss";
+import style from "../Loading.module.scss";
 import Slider from '@mui/material/Slider';
 
 

@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react'
-import style from "../TestJWT.module.scss";
+import style from "../Loading.module.scss";
 import Row from "./Row";
 
 

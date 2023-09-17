@@ -4,15 +4,11 @@ import {Route, Routes} from "react-router-dom";
 import Home from "../pages/Home/Home";
 import Detail from "../pages/Detail/Detail";
 import Login from "../pages/Login/Login";
-// import Test from "../pages/Tests/1_redux_toolkit/Test";
-// import Test from "../pages/Tests/2_redux_toolkit/Test";
-// import Test from "../pages/Tests/3_redux_toolkit/TechList";
-import Test from "../pages/Tests/4_react_hook_form/AuthPage";
 import Message from "../Message/Message";
 import Logout from "../pages/Logout/Logout";
-import TestJWT from "../pages/TestJWT/TestJWT";
 import Review from "../pages/Tech/Review/Review";
 import Equipment from "../pages/Equipment/Equipment";
+import Loading from "../pages/Loading/Loading";
 
 
 const Main = () => {
@@ -26,8 +22,8 @@ const Main = () => {
                     <Route path="login" element={<Login />} />
                     <Route path="logout" element={<Logout />} />
                     <Route path="equipment" element={<Equipment />} />
+                    <Route path="loading" element={<Loading />} />
                     {/*<Route path="test" element={<Test />} />*/}
-                    <Route path="test_jwt" element={<TestJWT />} />
                 </Routes>
                 <Message/>
             </div>

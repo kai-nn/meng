@@ -16,8 +16,6 @@ const Equipment = () => {
     const dispatch = useDispatch()
     const statusConnection = useSelector(state => state.equipment.statusConnection)
 
-
-
     useEffect(() => {
         let msg
         switch (statusConnection){

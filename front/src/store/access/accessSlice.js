@@ -30,7 +30,7 @@ const initialState = {
         //     code: 111
         // },
         {
-            url: 'test_jwt',
+            url: 'loading',
             code: 111
         },
     ],

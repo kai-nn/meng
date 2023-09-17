@@ -40,6 +40,7 @@ def getAccess(login, user, shtat):
             {'url': '', 'code': 111},
             {'url': 'review', 'code': 100},
             {'url': 'equipment', 'code': 111},
+            {'url': 'loading', 'code': 111},
             {'url': 'logout', 'code': 101},
         ]
     }

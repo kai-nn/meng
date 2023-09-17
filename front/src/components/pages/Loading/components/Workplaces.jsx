@@ -1,6 +1,5 @@
 import React from 'react'
-import style from "../TestJWT.module.scss";
-import {TRUE} from "sass";
+import style from "../Loading.module.scss";
 
 
 const Workplaces = (
