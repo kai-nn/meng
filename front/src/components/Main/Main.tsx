@@ -19,10 +19,10 @@ const Main = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="review" element={<Review />} />
                     <Route path="detail" element={<Detail />} />
-                    <Route path="login" element={<Login />} />
-                    <Route path="logout" element={<Logout />} />
                     <Route path="equipment" element={<Equipment />} />
                     <Route path="loading" element={<Loading />} />
+                    <Route path="login" element={<Login />} />
+                    <Route path="logout" element={<Logout />} />
                     {/*<Route path="test" element={<Test />} />*/}
                 </Routes>
                 <Message/>

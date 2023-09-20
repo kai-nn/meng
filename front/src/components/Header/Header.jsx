@@ -33,13 +33,13 @@ const Header = () => {
         menuData.menu.forEach(a =>
             linkExtensions.forEach( b => a.url === b.url && intersection.push(b) )
         )
-        // console.log(intersection)
         return intersection
     }
 
 
     useEffect(() => {
         setLinks(getIntersection(menuData))
+        console.log(menuData.user)
         menuData.user ? setAvatar('./img_store/' + menuData.user.path) : setAvatar('')
     }, [menuData])
 

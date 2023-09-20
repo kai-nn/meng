@@ -29,16 +29,6 @@ export const linkExtensions = [
         icon: <PrecisionManufacturingOutlinedIcon />
     },
     {
-        label: 'Вход',
-        url: 'login',
-        icon: <LoginIcon />
-    },
-    {
-        label: 'Выход',
-        url: 'logout',
-        icon: <LogoutIcon />
-    },
-    {
         label: 'Оснастка',
         url: 'equipment',
         icon: <ConstructionIcon />
@@ -47,6 +37,16 @@ export const linkExtensions = [
         label: 'Загрузка',
         url: 'loading',
         icon: <AlignHorizontalLeftIcon />
+    },
+    {
+        label: 'Вход',
+        url: 'login',
+        icon: <LoginIcon />
+    },
+    {
+        label: 'Выход',
+        url: 'logout',
+        icon: <LogoutIcon />
     },
 ]
 

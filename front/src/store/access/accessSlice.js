@@ -22,6 +22,10 @@ const initialState = {
             code: 111
         },
         {
+            url: 'loading',
+            code: 111
+        },
+        {
             url: 'login',
             code: 111
         },
@@ -29,10 +33,6 @@ const initialState = {
         //     url: 'logout',
         //     code: 111
         // },
-        {
-            url: 'loading',
-            code: 111
-        },
     ],
 }
 
