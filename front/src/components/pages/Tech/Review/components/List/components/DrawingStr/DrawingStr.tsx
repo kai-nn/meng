@@ -7,9 +7,9 @@ interface IDrawingStr {
 }
 
 const DrawingStr: FC<IDrawingStr> = ({
-     drawing,
-     children
-    }) => {
+    drawing,
+    children
+}) => {
 
     return (
         <>

@@ -16,14 +16,14 @@ const Main = () => {
         <div className={style.window}>
             <div className={style.content}>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="*" element={<Home />} />
                     <Route path="review" element={<Review />} />
                     <Route path="detail" element={<Detail />} />
                     <Route path="equipment" element={<Equipment />} />
                     <Route path="loading" element={<Loading />} />
                     <Route path="login" element={<Login />} />
                     <Route path="logout" element={<Logout />} />
-                    {/*<Route path="test" element={<Test />} />*/}
+                    {/*<Route path="test" element={<Model />} />*/}
                 </Routes>
                 <Message/>
             </div>

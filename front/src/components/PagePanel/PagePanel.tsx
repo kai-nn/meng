@@ -39,9 +39,9 @@ const PagePanel = () => {
             <div className={style.paginator}>
                 <Pagination count={pageCount} color="primary" onChange={changePage} />
                 <Select value={listLen} size="small" onChange={e => changeListLen(e)}>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={25}>25</MenuItem>
-                  <MenuItem value={50}>50</MenuItem>
+                    <MenuItem value={5}>5</MenuItem>
+                    <MenuItem value={25}>25</MenuItem>
+                    <MenuItem value={50}>50</MenuItem>
                 </Select>
             </div>
         </div>

@@ -24,7 +24,7 @@ const Home = () => {
                             return (
                                 <div className={ind === active ? style.el_menu__active : style.el_menu}
                                     onClick={() => sellect(ind)}
-                                     key={ind} >
+                                    key={ind} >
                                     {el.elementMenu}
                                 </div>
                             )

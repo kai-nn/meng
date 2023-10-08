@@ -25,11 +25,11 @@ const List = ({detail=[], techno=[]}) => {
                                 return (
                                     t.detail_id === d.id ?
                                         <TechStr key={`t_str_${j}`}
-                                                 name={t.name}
-                                                 version={t.version}
-                                                 title={t.description}
-                                                 status={t.status_tech}
-                                                 clickable={true}/> : ''
+                                            name={t.name}
+                                            version={t.version}
+                                            title={t.description}
+                                            status={t.status_tech}
+                                            clickable={true}/> : ''
                                 )
                             })
                         }

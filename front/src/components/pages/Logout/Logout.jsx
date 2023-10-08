@@ -20,8 +20,8 @@ const Logout = () => {
                 visibility: true,
                 type: data.type,
                 text: data.message,
-        }))
-    })
+            }))
+        })
 
     return (
         <Navigate to='/'/>

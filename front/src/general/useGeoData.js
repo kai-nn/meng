@@ -8,14 +8,14 @@ export const useGeoData = () => {
     useEffect(() => {
 
         navigator.geolocation.getCurrentPosition(
-        ( position ) => {
-            setCoord({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude
-            })
+            ( position ) => {
+                setCoord({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                })
             },
-        () => {
-            console.log('Местоположение не определено или отключена геолокация в вашем устройстве');
+            () => {
+                console.log('Местоположение не определено или отключена геолокация в вашем устройстве');
             }
         )
 

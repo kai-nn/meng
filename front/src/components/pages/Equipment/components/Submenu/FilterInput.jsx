@@ -5,6 +5,7 @@ import {setFilterValue} from "../../../../../store/equipment/equipmentSlice";
 
 
 const FilterInput = (props) => {
+    // eslint-disable-next-line react/prop-types
     const filterBtnActivation = props.filterBtn
 
     const dispatch = useDispatch()
@@ -31,10 +32,10 @@ const FilterInput = (props) => {
 
     return (
         <input className={style.input}
-           placeholder={'Фильтр'}
-           disabled={!filterBtnActivation}
-           value={filter}
-           onChange={filterHandler}
+            placeholder={'Фильтр'}
+            disabled={!filterBtnActivation}
+            value={filter}
+            onChange={filterHandler}
         />
     )
 

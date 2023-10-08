@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import './Modal.scss'
 
 
+// eslint-disable-next-line react/prop-types
 const Modal = ({setActive, header, children, footer}) => {
 
     const [toggle, setToggle] = useState('curtain open')

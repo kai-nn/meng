@@ -8,7 +8,7 @@ const Row = (
         tech_array,
         timeTransformation,
     }
-    ) => {
+) => {
 
     const {wp, wp_quantity, shift, k_isp, fond} = workplaces
     let row

@@ -7,7 +7,7 @@ const Workplaces = (
         workplaces,
         fondValue
     }
-    ) => {
+) => {
 
     return (
         <div className={style.workplaces}>

@@ -19,18 +19,20 @@ const Equipment = () => {
     useEffect(() => {
         let msg
         switch (statusConnection){
-            case 'connect':
-                msg = {visibility: true, type: 'success', text: 'Соединение с сервером установлено',}
-                break
-            case 'disconnect':
-                msg = {visibility: true, type: 'error', text: 'Соединение с сервером отсутствует. Доступен режим просмотра',}
-                break
-            case 'connect_error':
-                msg = {visibility: true, type: 'warning', text: 'Ошибка при работе с сервером. Доступен режим просмотра',}
-                break
-            case null:
-                msg = {visibility: false, type: 'info', text: '',}
-                break
+        case 'connect':
+            msg = {visibility: true, type: 'success', text: 'Соединение с сервером установлено',}
+            break
+        case 'disconnect':
+            msg = {
+                visibility: true, type: 'error', text: 'Соединение с сервером отсутствует. Доступен режим просмотра',
+            }
+            break
+        case 'connect_error':
+            msg = {visibility: true, type: 'warning', text: 'Ошибка при работе с сервером. Доступен режим просмотра',}
+            break
+        case null:
+            msg = {visibility: false, type: 'info', text: '',}
+            break
         }
         dispatch(showMessage({...msg}))
     }, [statusConnection])

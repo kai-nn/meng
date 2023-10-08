@@ -22,10 +22,13 @@ const TechStr: FC<ITechStr> = ({name, version, title, status, clickable}) => {
             {
                 (() => {
                     switch (status) {
-                        case 'edit': return <div style={{textAlign: 'right'}} title={'На редактировании'}><ModeEditOutlineOutlinedIcon /></div>;
-                        case 'approve': return <div style={{textAlign: 'right'}} title={'Утвержден'}><CheckBoxOutlinedIcon /></div>;
-                        case 'archive': return <div style={{textAlign: 'right'}} title={'В архиве'}><Inventory2OutlinedIcon /></div>;
-                        default: return <div style={{textAlign: 'right'}}>{status}</div>;
+                    case 'edit': 
+                        return <div style={{textAlign: 'right'}} title={'На редактировании'}><ModeEditOutlineOutlinedIcon /></div>;
+                    case 'approve': 
+                        return <div style={{textAlign: 'right'}} title={'Утвержден'}><CheckBoxOutlinedIcon /></div>;
+                    case 'archive':
+                        return <div style={{textAlign: 'right'}} title={'В архиве'}><Inventory2OutlinedIcon /></div>;
+                    default: return <div style={{textAlign: 'right'}}>{status}</div>;
                     }
                 })()
             }

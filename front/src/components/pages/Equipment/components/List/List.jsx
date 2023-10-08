@@ -66,9 +66,9 @@ const List = () => {
                         : style.str
                     return (
                         <div key={`list_${id}`}
-                             className={sell}
-                             style={{marginLeft: indent}}
-                             onClick={() => activate(id)}
+                            className={sell}
+                            style={{marginLeft: indent}}
+                            onClick={() => activate(id)}
                         >
                             <span className={style.name}>{name}</span>
                             {

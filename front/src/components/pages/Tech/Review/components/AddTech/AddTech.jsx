@@ -16,17 +16,17 @@ import TextField from "@mui/material/TextField";
 
 const AddTech = ({addTech, setAddTech}) => {
 
-  const [expanded, setExpanded] = useState(true);
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false)
-  };
+    const [expanded, setExpanded] = useState(true);
+    const handleChange = (panel) => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false)
+    };
 
 
-  const extendStyle = {
-      border: "1px solid lightgrey",
-      boxShadow: "none",
-      borderRadius: "4px"
-  }
+    const extendStyle = {
+        border: "1px solid lightgrey",
+        boxShadow: "none",
+        borderRadius: "4px"
+    }
 
     return (
         <Modal
@@ -43,38 +43,38 @@ const AddTech = ({addTech, setAddTech}) => {
                     <Button color="error"><DeleteOutlineIcon />Удалить</Button>
                     <Button color="primary"><ArchiveOutlinedIcon />В архив</Button>
                 </>
-                }
-            >
+            }
+        >
 
             <Accordion
                 expanded={expanded}
                 onChange={handleChange('panel1')}
                 sx={{...extendStyle}}
-                >
+            >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} >
                     <b>Основные характеристики</b>
                 </AccordionSummary>
                 <AccordionDetails>
                     <div className={'field'} style={{display: "grid", gridTemplateColumns: "auto auto", gap: "10px"}}>
                         <TextField
-                          label="Деталь"
-                          size="small"
-                          defaultValue="value"
+                            label="Деталь"
+                            size="small"
+                            defaultValue="value"
                         />
                         <TextField
-                          label="Название"
-                          size="small"
-                          defaultValue=""
+                            label="Название"
+                            size="small"
+                            defaultValue=""
                         />
                         <TextField
-                          label="Обозначение технологии"
-                          size="small"
-                          defaultValue=""
+                            label="Обозначение технологии"
+                            size="small"
+                            defaultValue=""
                         />
                         <TextField
-                          label="Индекс"
-                          size="small"
-                          defaultValue=""
+                            label="Индекс"
+                            size="small"
+                            defaultValue=""
                         />
                     </div>
                 </AccordionDetails>
@@ -82,19 +82,19 @@ const AddTech = ({addTech, setAddTech}) => {
 
             <Accordion sx={{...extendStyle}}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} >
-                   <b>Атрибуты документа</b>
+                    <b>Атрибуты документа</b>
                 </AccordionSummary>
                 <AccordionDetails>
                     <div className={'field'} style={{display: "grid", gridTemplateColumns: "80% auto",  gap: "10px"}}>
                         <TextField
-                          label="Название комлекта"
-                          size="small"
-                          defaultValue=""
+                            label="Название комлекта"
+                            size="small"
+                            defaultValue=""
                         />
                         <TextField
-                          label="Литера"
-                          size="small"
-                          defaultValue=""
+                            label="Литера"
+                            size="small"
+                            defaultValue=""
                         />
                     </div>
                 </AccordionDetails>
@@ -106,32 +106,32 @@ const AddTech = ({addTech, setAddTech}) => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <TextField
-                      label="Сортамент"
-                      size="small"
-                      // multiline
-                      style={{width: "100%", margin: "0 0 10px 0"}}
-                      defaultValue=""
+                        label="Сортамент"
+                        size="small"
+                        // multiline
+                        style={{width: "100%", margin: "0 0 10px 0"}}
+                        defaultValue=""
                     />
                     <div className={'field'} style={{display: "grid", gridTemplateColumns: "auto auto", gap: "10px"}}>
                         <TextField
-                          label="Код"
-                          size="small"
-                          defaultValue=""
+                            label="Код"
+                            size="small"
+                            defaultValue=""
                         />
                         <TextField
-                          label="ЕВ"
-                          size="small"
-                          defaultValue=""
+                            label="ЕВ"
+                            size="small"
+                            defaultValue=""
                         />
                         <TextField
-                          label="МД"
-                          size="small"
-                          defaultValue=""
+                            label="МД"
+                            size="small"
+                            defaultValue=""
                         />
                         <TextField
-                          label="ЕН"
-                          size="small"
-                          defaultValue=""
+                            label="ЕН"
+                            size="small"
+                            defaultValue=""
                         />
                     </div>
                 </AccordionDetails>

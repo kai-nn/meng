@@ -12,7 +12,7 @@ const ControlPanel = (
         scale,
         setScale
     }
-    ) => {
+) => {
 
     const fondMarks = [
         {
@@ -33,7 +33,7 @@ const ControlPanel = (
         },
     ]
 
-    const {loadMax, loadMin} = loadMaxMinMed
+    const { loadMax, loadMin } = loadMaxMinMed
 
     const changeScale = (event, newScale) => {
         setScale(newScale)

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import style from './Header.module.scss'
 import {
-    Button,
     Avatar,
 } from "@mui/material";
 import {general_style} from "../../general/style";
@@ -62,7 +61,7 @@ const Header = () => {
                                 <IconButton
                                     value={url}
                                     style={st}
-                                    >
+                                >
                                     <span className={style.icon}>{icon}</span>
                                     <span className={style.label}>{label}</span>
                                 </IconButton>
@@ -78,7 +77,15 @@ const Header = () => {
                         {menuData.user && menuData.user.last_name + ' ' + menuData.user.first_name}
                     </span>
                     <span className={style.role__name}>
-                        {menuData.shtat ? menuData.shtat.position : <a onClick={() => navigate('/login')} style={{cursor: 'pointer', fontSize: '1.4em', color: 'white'}}>Войти</a>}
+                        {
+                            menuData.shtat 
+                                ? menuData.shtat.position 
+                                : <a onClick={() => navigate('/login')} style={{
+                                    cursor: 'pointer', fontSize: '1.4em', color: 'white'
+                                }}>
+                                    Войти
+                                </a>
+                        }
                     </span>
                 </div>
                 <Avatar

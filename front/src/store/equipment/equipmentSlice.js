@@ -60,7 +60,7 @@ export const sendData = createAsyncThunk(
         })
         dispatch(setIsLoading(false))
         socket.emit('equipment', request)
-})
+    })
 
 
 export const updateData = createAsyncThunk(
@@ -75,7 +75,7 @@ export const updateData = createAsyncThunk(
         })
         console.log('updateData')
         socket.emit('equipment', request)
-})
+    })
 
 
 export const equipmentSlice = createSlice({

@@ -21,7 +21,7 @@ const Login = () => {
     const {handleSubmit, control} = useForm<ISignInForm>()
     const {errors} = useFormState(
         {control}
-        )
+    )
 
     const api = async (url:string, param:any={}) => {
         const res = await axios.post(url, param)

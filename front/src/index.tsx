@@ -6,9 +6,6 @@ import './index.css';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux'
 
-// import store from './store/1_redux_toolkit/index'
-// import {store} from './store/2_redux_toolkit/store'
-// import {store} from './store/3_redux_toolkit/store'
 import {store} from './store/store'
 
 

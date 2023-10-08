@@ -78,7 +78,10 @@ const Data = () => {
                 <div className={style.data}>
 
                     <div className={style.image}>
-                        <img src={/img_store/ + (elemValue.path !== '' ? elemValue.path : "equipment/no_image.png")} alt={elemValue.name}/>
+                        <img src={/img_store/ + (elemValue.path !== ''
+                            ? elemValue.path
+                            : "equipment/no_image.png")} alt={elemValue.name}
+                        />
                     </div>
 
                     <div className={style.input}>

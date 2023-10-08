@@ -18,7 +18,7 @@ export const linkExtensions = [
         url: '',
         icon: <HomeOutlinedIcon />
     },
-        {
+    {
         label: 'Деталь',
         url: 'detail',
         icon: <ArchitectureIcon />

@@ -17,11 +17,11 @@ function useAxios(url, method='get', value={}) {
 
         // console.log('%c changeData', 'color: blue;')
         axios({
-                url: url,
-                method: method,
-                data: {...value},
-                headers: {Authorization: 'Bearer ' + token}
-            })
+            url: url,
+            method: method,
+            data: {...value},
+            headers: {Authorization: 'Bearer ' + token}
+        })
             .then(res => {
                 const d = res.data
                 setData(d)

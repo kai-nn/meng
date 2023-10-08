@@ -15,7 +15,7 @@ const Diagram = (
         width,
         loadMaxMinMed
     }
-    ) => {
+) => {
 
     const overloadPosition = fondValue * timeTransformation
 
