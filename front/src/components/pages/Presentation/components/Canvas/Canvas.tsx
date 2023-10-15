@@ -145,6 +145,8 @@ const Canvas: FC<ICanvas> = ({selectedModel}) => {
             renderer.render(scene, camera)
         })
 
+        camera.aspect = window.innerWidth / window.innerHeight
+        camera.updateProjectionMatrix()
         renderer.setSize(window.innerWidth, window.innerHeight)
 
         new OrbitControls(camera, renderer.domElement)
