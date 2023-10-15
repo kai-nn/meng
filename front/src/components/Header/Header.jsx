@@ -38,7 +38,7 @@ const Header = () => {
 
     useEffect(() => {
         setLinks(getIntersection(menuData))
-        console.log(menuData.user)
+        // console.log(menuData.user)
         menuData.user ? setAvatar('./img_store/' + menuData.user.path) : setAvatar('')
     }, [menuData])
 

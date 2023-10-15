@@ -586,3 +586,16 @@ def wp():
 # wp()
 
 
+@app.route('/presentation', methods=['GET'])
+def get_all_record():
+    file = open("static/models/listModel.json", "r")
+    json_data = json.load(file)
+    file.close()
+    print(json_data)
+
+    return jsonify(json_data)
+
+
+@app.route('/presentation/models/<path:name>', methods=['GET'])
+def model(name):
+    return send_from_directory("static/models", name)

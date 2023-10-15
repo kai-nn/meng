@@ -11,6 +11,10 @@ body, p {
   /*margin: auto;*/
 }
 
+html {
+    height: 100%;
+}
+
 
 /* набор спецсимволов */
 @font-face {

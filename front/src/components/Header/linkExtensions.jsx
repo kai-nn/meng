@@ -44,6 +44,11 @@ export const linkExtensions = [
         icon: <LoginIcon />
     },
     {
+        label: 'ОТЛАДКА',
+        url: 'tests',
+        icon: <BugReportIcon />
+    },
+    {
         label: 'Выход',
         url: 'logout',
         icon: <LogoutIcon />

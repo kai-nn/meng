@@ -1,0 +1,19 @@
+[
+  {
+    "id": 0,
+    "name": "cylinder",
+    "path": "cylinder.gltf"
+  },
+
+  {
+    "id": 1,
+    "name": "stock",
+    "path": "stock.gltf"
+  },
+
+  {
+    "id": 2,
+    "name": "head",
+    "path": "head.gltf"
+  }
+]

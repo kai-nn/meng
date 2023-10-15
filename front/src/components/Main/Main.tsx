@@ -9,6 +9,7 @@ import Logout from "../pages/Logout/Logout";
 import Review from "../pages/Tech/Review/Review";
 import Equipment from "../pages/Equipment/Equipment";
 import Loading from "../pages/Loading/Loading";
+import Presentation from "../pages/Presentation/Presentation";
 
 
 const Main = () => {
@@ -23,7 +24,7 @@ const Main = () => {
                     <Route path="loading" element={<Loading />} />
                     <Route path="login" element={<Login />} />
                     <Route path="logout" element={<Logout />} />
-                    {/*<Route path="test" element={<Model />} />*/}
+                    <Route path="tests" element={<Presentation />} />
                 </Routes>
                 <Message/>
             </div>
