@@ -599,3 +599,8 @@ def get_all_record():
 @app.route('/presentation/models/<path:name>', methods=['GET'])
 def model(name):
     return send_from_directory("static/models", name)
+
+
+@app.route('/presentation/environment/<path:name>', methods=['GET'])
+def environment(name):
+    return send_from_directory("static/environment", name)

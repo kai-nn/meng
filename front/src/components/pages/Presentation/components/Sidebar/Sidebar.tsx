@@ -1,30 +1,49 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import React, {useEffect} from 'react';
 import cls from './Sidebar.module.scss'
-import { Data, SelectedModel } from "../../types/types";
+import cn from 'classnames'
+import {loadModels, selectModel} from "../../../../../store/presentation/presentationSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../../../../store/store";
+import {IModel} from "../../types/types";
 
 
-interface ISidebar {
-    selectedModel: SelectedModel | undefined,
-    setSelectedModel: Dispatch<SetStateAction<SelectedModel>>,
-    data: Data
-}
+const Sidebar = () => {
 
-const Sidebar: FC<ISidebar> = (props) => {
-    const {selectedModel, setSelectedModel, data} = props
-    const select = (model: SelectedModel) => {
-        setSelectedModel(model)
+    const dispatch = useDispatch()
+
+    // @ts-ignore
+    const models: IModel[] = useSelector((state) => state.presentation.models)
+    const selectedModel  = useSelector((state: RootState) => state.presentation.selectedModel)
+
+    // предзагрузка списка моделей
+    useEffect(() => {
+        // @ts-ignore
+        dispatch(loadModels())
+    }, [])
+
+
+    const select = (model: IModel) => {
+        dispatch(selectModel(model))
     }
 
     return (
         <div className={cls.Sidebar}>
             {
-                data && data.map(el => {
-                    const {id, name, path} = el
-                    return <span key={id} onClick={() => select(el)}>{name}</span>
+                models.map(model => {
+                    const {id, name, path} = model
+                    return (
+                        <span 
+                            key={id} 
+                            className={cn(cls.link, {[cls.active]: id === selectedModel?.id})}
+                            onClick={() => select(model)}
+                        >
+                            {name}
+                        </span>
+                    )
                 })
             }
         </div>
-    );
-};
+    )
+}
 
 export default Sidebar

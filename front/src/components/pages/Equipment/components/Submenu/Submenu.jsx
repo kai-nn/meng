@@ -15,9 +15,8 @@ import {
     press,
     setStatusConnection,
     listenChannel,
-    sendData, setFilterValue,
+    sendData,
 } from "../../../../../store/equipment/equipmentSlice";
-import {current} from "@reduxjs/toolkit";
 import FilterInput from "./FilterInput";
 
 

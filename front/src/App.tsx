@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import InfoPanel from "./components/InfoPanel/InfoPanel";
@@ -6,11 +6,11 @@ import InfoPanel from "./components/InfoPanel/InfoPanel";
 
 function App() {
     return (
-        <div>
+        <Suspense fallback={<div>Loading...</div>}>
             <Header />
             <Main />
             <InfoPanel />
-        </div>
+        </Suspense>
     );
 }
 

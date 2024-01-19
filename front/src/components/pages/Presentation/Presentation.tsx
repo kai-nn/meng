@@ -1,44 +1,29 @@
-import { FC, useEffect, useState } from "react";
+import React, {useEffect} from "react";
 import cls from './Presentation.module.scss'
 import Sidebar from "./components/Sidebar/Sidebar";
-import { useRequest } from "./hooks/useRequest";
-import Canvas from "./components/Canvas/Canvas";
-import { SelectedModel } from "./types/types";
+import AnimationMenu from "./components/AnimationMenu/AnimationMenu";
+import Characteristics from "./components/Characteristics/Characteristics";
+import Canv from "./components/Canvas/Canv";
+import {useDispatch} from "react-redux";
+import {clearState} from "../../../store/presentation/presentationSlice";
 
 
-
-const Presentation: FC = () => {
-
-    const [selectedModel, setSelectedModel] = useState<SelectedModel>({path: null})
-    const { data, setRequestData } = useRequest()
+const Presentation = () => {
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        setRequestData(
-            {
-                url: 'presentation',
-                method: 'GET',
-                headers: {'Content-type': 'application/json; charset=UTF-8'},
-                // body: 'empty'
-            }
-        )
+        return () => {
+            console.log('clear state')
+            dispatch(clearState())
+        }
     }, [])
-
-    useEffect(() => {
-        // console.log('data', data)
-        data && setSelectedModel(data[0])
-    }, [data])
-
-
 
     return (
         <div className={cls.Presentation}>
-            <Sidebar
-                selectedModel={selectedModel}
-                setSelectedModel={setSelectedModel}
-                data={data}
-            />
-
-            { !!selectedModel.path && <Canvas selectedModel={ selectedModel }/> }
+            <Sidebar />
+            <AnimationMenu />
+            <Canv />
+            <Characteristics />
         </div>
     )
 }

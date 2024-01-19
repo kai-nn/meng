@@ -19,12 +19,17 @@ let dataNeedsUpdate = true
 export const listenChannel = createAsyncThunk(
     'equipment/listenChannel',
     (payload, {dispatch, getState}) => {
+        console.log('предзагрузка')
         const state = getState()
         const user = state.access.user?.id ? state.access.user?.id : null
         socket.on('connect', () => {
             dispatch(setStatusConnection('connect'))
             // предзагрузка данных
-            dataNeedsUpdate && dispatch(sendData({command: 'loadAll', selected: null, user: user}))
+            dataNeedsUpdate && dispatch(sendData({
+                command: 'loadAll',
+                selected: null,
+                user: user,
+            }))
         })
         socket.on('connect_error', (err) => {
             console.log('connect_error', err.message)
@@ -37,7 +42,9 @@ export const listenChannel = createAsyncThunk(
             dispatch(setIsLoading(false))
             dispatch(setStatusConnection('disconnect'))
         })
+        // получение любых входящих данных
         socket.on("equipment", serverMessage => {
+
             dispatch(setIsLoading(true))
             dispatch(changeData({
                 ...JSON.parse(serverMessage),
@@ -47,6 +54,23 @@ export const listenChannel = createAsyncThunk(
     }
 )
 
+// export const receiveServerData = createAsyncThunk(
+//     'equipment/listenChannel',
+//     (payload, {dispatch, getState}) => {
+//         console.log('receiveServerData')
+//         const state = getState()
+//         const user = state.access.user?.id ? state.access.user?.id : null
+//         // получение любых входящих данных
+//         socket.on("equipment", serverMessage => {
+//
+//             dispatch(setIsLoading(true))
+//             dispatch(changeData({
+//                 ...JSON.parse(serverMessage),
+//                 user: user
+//             }))
+//         })
+//     }
+// )
 
 export const sendData = createAsyncThunk(
     'equipment/listenChannel',

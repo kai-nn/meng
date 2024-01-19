@@ -1,19 +1,31 @@
 [
   {
     "id": 0,
-    "name": "cylinder",
-    "path": "cylinder.gltf"
+    "name": "Цилиндр",
+    "path": "Cilinder_before_animation_assably.glb",
+    "history": "<b>Гидравлический цилиндр</b> преобразует энергию давления гидравлической жидкости в механическое возвратно-поступательное движение штока."
   },
 
   {
     "id": 1,
-    "name": "stock",
-    "path": "stock.gltf"
+    "name": "Елочка",
+    "path": "christmasTree.glb",
+    "history": "&#127876; Всех с Новым годом и Рождеством! &#127873; "
   },
 
   {
     "id": 2,
-    "name": "head",
-    "path": "head.gltf"
+    "name": "boom",
+    "path": "boom_animation.glb",
+    "history": "boom_animation"
+  },
+
+  {
+    "id": 3,
+    "name": "Car",
+    "path": "car.glb",
+    "history": "none"
   }
+
+
 ]
