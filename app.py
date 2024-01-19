@@ -588,7 +588,7 @@ def wp():
 
 @app.route('/presentation', methods=['GET'])
 def get_all_record():
-    file = open("static/models/listModel.json", "r")
+    file = open("static/models/listModel.json", "r", encoding="utf-8")
     json_data = json.load(file)
     file.close()
     print(json_data)
