@@ -15,13 +15,6 @@
 
   {
     "id": 2,
-    "name": "boom",
-    "path": "boom_animation.glb",
-    "history": "boom_animation"
-  },
-
-  {
-    "id": 3,
     "name": "Car",
     "path": "car.glb",
     "history": "none"
