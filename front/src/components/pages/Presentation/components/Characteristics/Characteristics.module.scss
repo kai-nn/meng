@@ -1,8 +1,14 @@
+$width: 200px;
+
 .Characteristics {
   position: absolute;
   top: 0;
   right: 0;
-  width: 200px;
+
+  animation-duration: 0.5s;
+  animation-name: widthIn;
+
+  width: $width;
   padding: 5px;
   height: 100%;
   z-index: 10;
@@ -12,12 +18,22 @@
   //backdrop-filter: blur(4px);
   //background-image: linear-gradient(to left, rgba(0, 140, 255, 0.31), rgba(255, 255, 255, 0.1));
 
-  display: flex;
-  flex-direction: column;
+  //display: flex;
+  //flex-direction: column;
 }
 
 @media screen and (max-width: 550px) {
   .Characteristics {
-    width: 100px;
+    width: $width * 0.5;
   }
+}
+
+@keyframes widthIn {
+  from {
+    right: -$width;
+  }
+  to {
+    right: 0;
+  }
+
 }

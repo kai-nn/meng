@@ -1,6 +1,13 @@
+$width: -200px;
+
 .Sidebar {
-  position: fixed;
-  width: 200px;
+  position: absolute;
+  top: 0;
+  //left: $width;
+  width: $width;
+  animation-duration: 0.5s;
+  animation-name: widthIn;
+
   padding: 5px;
   height: 400px;
   z-index: 10;
@@ -20,7 +27,7 @@
 
 @media screen and (max-width: 550px) {
   .Sidebar {
-    width: 100px;
+    width: calc ($width * 0.5)
   }
 }
 
@@ -35,6 +42,16 @@
 
   &:hover {
     color: orange;
+  }
+
+}
+
+@keyframes widthIn {
+  from {
+    left: $width;
+  }
+  to {
+    left: 0;
   }
 
 }

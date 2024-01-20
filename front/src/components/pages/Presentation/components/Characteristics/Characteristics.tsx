@@ -13,10 +13,9 @@ const Characteristics = () => {
     }
 
     return (
-        <div className={cls.Characteristics}>
-            {/*{history}*/}
-            <div dangerouslySetInnerHTML={createHTML()} />
-        </div>
+        // <div className={cls.Characteristics}>
+        <div className={cls.Characteristics} dangerouslySetInnerHTML={createHTML()} />
+        // </div>
     );
 };
 

@@ -13,7 +13,6 @@ const Presentation = () => {
 
     useEffect(() => {
         return () => {
-            console.log('clear state')
             dispatch(clearState())
         }
     }, [])
